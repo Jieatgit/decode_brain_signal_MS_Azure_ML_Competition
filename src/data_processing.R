@@ -4,12 +4,12 @@
 # fh_project_2_templates    <- function(dataset1, dataset2) 
 # train_test_slipt          <- function(dataset1) 
 # train_test_slipt_indecies <- function(dataset1, training_portion=0.75) 
-# gaussian_smooth  <- function(x, k = 50) 
-# compute_psd      <- function(dataset1) 
-# compute_psc      <- function(dataset_psd) 
-# compute_psd_proj <- function(dataset_psd, dataset_psd_mean_psc_rbinded) 
-# compute_bb       <- function(dataset1) 
-# compute_bb_test  <- function(dataset1, dataset_psd_mean, dataset_psc) 
+# gaussian_smooth           <- function(x, k = 50) 
+# compute_psd               <- function(dataset1) 
+# compute_psc               <- function(dataset_psd) 
+# compute_psd_proj          <- function(dataset_psd, dataset_psd_mean_psc_rbinded) 
+# compute_bb                <- function(dataset1) 
+# compute_bb_test           <- function(dataset1, dataset_psd_mean, dataset_psc) 
 
 library("zoo")
 library(abind)
@@ -20,7 +20,7 @@ library(abind)
 #                          1 means it is the house stimulus onset time
 #                          2 means it is the face stimulus onset time
 # It takes the stimulus column as the input, which records the stimulus type at each sampling point
-fh_get_events = function(stim) {
+fh_get_events <- function(stim) {
 	nrows <- nrow(stim)
 	if (stim[nrows] != 0 & stim[nrows] != 101) {
 		#if the last stimulus type is not 0 or 101, 
@@ -28,12 +28,12 @@ fh_get_events = function(stim) {
 		#Padding a 0 after that, otherwise, the last stimulus onset event will not be recoganized. 
 		stim <- rbind(stim, 0)
 	}
-	tmp = c(0, stim[1:((length(stim) - 1))])
+	tmp <- c(0, stim[1:((length(stim) - 1))])
 	b <- which((stim - tmp) != 0) #Get the stimulus type changing time
 	c <- floor(diff(b) / 2) #Get the half of the times between two consecutive events
 	b <- b[1:length(b) - 1]
 	d <- b + c # Get the midway between two consecutive events
-	evs = matrix(data = NA, nrow = length(b), ncol = 3)
+	evs <- matrix(data = NA, nrow = length(b), ncol = 3)
 	evs[, 1] <- b
 	evs[, 2] <- d
 	evs[, 3] <- stim[d]
@@ -46,7 +46,7 @@ fh_get_events = function(stim) {
 }
 
 # compute face/house signal templates, ie, the mean of chennals with same response
-fh_templates = function(dataset_train) {
+fh_templates <- function(dataset_train) {
   
   # Step 5.3, create templates for each channel, stimulus type (house or face), and for each patient
   ncols <- ncol(dataset_train) # get the number of columns of the training data. Training data has 67 columns. Col1: PatientID, Cols2-65, 64 channels, Col 66: Stimulus Type, Col 67: Stimulus Presentation Cycle ID
@@ -132,7 +132,7 @@ fh_templates = function(dataset_train) {
 
 # Function that projects raw ECoG signals to templates.
 # dataset1 is the raw ECoG signals, and dataset2 is the templates
-fh_project_2_templates = function(dataset1, dataset2) {
+fh_project_2_templates <- function(dataset1, dataset2) {
   ncols1 <- ncol(dataset1)
   ncols2 <- ncol(dataset2)
   unique_patients <- unique(dataset1[,1]) # get the list of unique patients
@@ -539,7 +539,7 @@ compute_psd_proj <- function(dataset_psd, dataset_psd_mean_psc_rbinded) {
 
 
 #Computes the scale values for a given number of octaves and voices
-scales=function(numOctave,numVoice){
+scales<-function(numOctave,numVoice){
   scale=vector(length=numOctave*numVoice)
   scale.index=1
   for(octave in 0:(numOctave-1)){
@@ -552,7 +552,7 @@ scales=function(numOctave,numVoice){
 }
 
 #Computes the corresponding frequency values for a given vector of scales, center frequency, and sample period
-scaleToFreq=function(scale,center,samplePeriod,plot=T){
+scaleToFreq<-function(scale,center,samplePeriod,plot=T){
   freq=(center)/(scale*(samplePeriod*2));
   if(plot==T){
     windows()
@@ -569,7 +569,7 @@ compute_bb <- function(dataset1) {
   num_cols <- ncol(dataset1)
   
   # wavelet parameters
-  s.freq = 1000 #sample frequency
+  s.freq <- 1000 #sample frequency
   octaves=4 #octaves in scale values
   voices =30 #voices per octave
   center =.4
@@ -726,12 +726,12 @@ compute_bb_test <- function(dataset1, dataset_psd_mean, dataset_psc) {
   num_cols <- ncol(dataset1)
   
   # wavelet parameters
-  s.freq = 1000 #sample frequency
-  octaves=4 #octaves in scale values
-  voices =30 #voices per octave
-  center =.4
-  omega  =2*pi*center #desired center frequency for Morlet wavelet
-  freq = scaleToFreq(scales(octaves,voices),center,1/(s.freq),plot=F)
+  s.freq <- 1000 #sample frequency
+  octaves<-4 #octaves in scale values
+  voices <-30 #voices per octave
+  center <-.4
+  omega  <-2*pi*center #desired center frequency for Morlet wavelet
+  freq <- scaleToFreq(scales(octaves,voices),center,1/(s.freq),plot=F)
   psd_coef <- length(freq)
   
   dataset_bb <- NULL

@@ -33,13 +33,13 @@
     f2_valid  <- compute_psd_proj(psd_valid, psd_psc)
     
     # feature type 3: broadband psd similarity in continues time window
-    bb = compute_bb(dataset1)
+    bb <- compute_bb(dataset1)
     write.csv(bb,"/Users/Jie/decode_brain/output/model_8.3_bb_mean_psc.csv")
     #bb <- read.csv("/Users/Jie/decode_brain/output/model_8.3_bb_mean_psc.csv", 
     #               sep=",", header=T, stringsAsFactor=F); bb <- bb[,2:68]
-    psd_mean = bb[(nrow(bb)-240*4+1):(nrow(bb)-240*2),]  # need to compute test bb
-    psc      = bb[(nrow(bb)-240*2+1):nrow(bb),]          # need to compute test bb
-    bb       = bb[1:(nrow(bb)-240*4),]
+    psd_mean <- bb[(nrow(bb)-240*4+1):(nrow(bb)-240*2),]  # need to compute test bb
+    psc      <- bb[(nrow(bb)-240*2+1):nrow(bb),]          # need to compute test bb
+    bb       <- bb[1:(nrow(bb)-240*4),]
     nrow(bb)-nrow(dataset1) # test sizes, should be of the same size
     # splite train/test
     r <- train_test_slipt_indecies(bb,0.75)
