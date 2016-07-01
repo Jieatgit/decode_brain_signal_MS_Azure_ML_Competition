@@ -1,5 +1,9 @@
+# Decoding Brain Signals
+
+visit the [competition page](https://gallery.cortanaintelligence.com/Competition/Decoding-Brain-Signals-2) for detail
 
 > Started	3/30/2016, 12:00:00 AM (PDT)
+
 > Ended	6/30/2016, 11:59:59 PM (PDT)
 
 ## Summary
@@ -10,7 +14,7 @@ Building on the work of Dr. Kai J. Miller and other neuroscientists, the competi
 
 Through this competition, you will play a key role in bringing the next generation of care to patients through advancing neuroscience research. Build the most intelligent model and accurately predict the image shown to a person based on electric signals in the brain. The Grand Prize winner will get $3,000 cash, followed by a 2nd prize of $1,500 cash, and a 3rd prize of $500 cash.
 
-Please see [this keynote video from CVP Joseph Sirosh announcing this competition at the Strata conference.
+Please see [this keynote video](https://youtu.be/VLEpd52hr3Q?list=PL055Epbe6d5bTJBkaOefINeUIs5-2K6Lv) from CVP Joseph Sirosh announcing this competition at the Strata conference.
 
 Check out [this video on Microsoft's Channel 9 introducing the Decoding Brain Signals competition](https://channel9.msdn.com/Series/FWTV-on-9/Decoding-Brainwaves-with-Azure-Machine-Learning)  and [this video with tips and tricks from the Microsoft data scientists who created the competition](https://channel9.msdn.com/Series/FWTV-on-9/Getting-Started-in-the-Decoding-Brain-Signals-Competition).
 
