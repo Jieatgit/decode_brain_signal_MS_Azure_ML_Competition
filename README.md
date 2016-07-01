@@ -1,4 +1,5 @@
-# Decoding brain signals -- a Microsoft Azure ML Competition project 
+# Decoding brain signals 
+### A Microsoft Azure ML Competition project 
 
 Author: Jie Chen, contact:  chenjie[at]uw.edu
 

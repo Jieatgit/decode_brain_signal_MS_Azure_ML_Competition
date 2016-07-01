@@ -503,7 +503,7 @@ compute_psd_proj <- function(dataset_psd, dataset_psd_mean_psc_rbinded) {
   num_patients    <- length(unique_patients) # get the number of unique patients
   num_cols        <- ncol(dataset_psd)
   
-  split_idx <- psd_coef*num_patients
+  split_idx        <- psd_coef*num_patients
   dataset_psd_mean <- dataset_psd_mean_psc_rbinded[1:split_idx,]
   dataset_psc      <- dataset_psd_mean_psc_rbinded[(split_idx+1):(2*split_idx),]
   
